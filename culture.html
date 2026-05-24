@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culture — Explore Japan</title>
+  <style>
+/* ============================================
+   EXPLORE JAPAN — Shared Stylesheet
+   Aesthetic: Editorial Japanese Minimalism
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Cinzel:wght@400;600&display=swap');
+
+/* ── Variables ── */
+:root {
+  --navy:   #0d1b2a;
+  --red:    #c1121f;
+  --cream:  #faf7f0;
+  --gold:   #c9a84c;
+  --muted:  #6b7280;
+  --white:  #ffffff;
+  --card-bg:#f4f1ea;
+  --border: #e8e0d0;
+  --nav-h:  72px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ──────────────────────────────────────────
+   NAVIGATION
+   ────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  height: var(--nav-h);
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  box-shadow: 0 2px 20px rgba(0,0,0,.35);
+}
+
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 1.25rem;
+  letter-spacing: .12em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo span { color: var(--red); }
+
+.nav-links { display: flex; gap: 8px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: .82rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 4px;
+  transition: color .25s, background .25s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+  background: rgba(201,168,76,.15);
+}
+.nav-links a.active { color: var(--gold); }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--white);
+  transition: transform .3s, opacity .3s;
+}
+
+/* ──────────────────────────────────────────
+   HERO
+   ────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  text-align: center;
+  padding-top: var(--nav-h);
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(.45);
+  transform: scale(1.04);
+  animation: heroZoom 12s ease-out forwards;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(13,27,42,.7) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 40px 24px;
+  animation: fadeUp .9s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  letter-spacing: .3em;
+  font-size: .78rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero p {
+  color: rgba(255,255,255,.8);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  font-size: .82rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background .25s, transform .2s;
+  border: none; cursor: pointer; font-family: inherit;
+}
+.btn:hover { background: #a30e19; transform: translateY(-2px); }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  margin-left: 12px;
+}
+.btn-outline:hover { background: var(--gold); color: var(--navy); }
+
+.scroll-hint {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,.5); font-size: .75rem; letter-spacing: .2em;
+  text-transform: uppercase; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-hint::after {
+  content: '';
+  display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%,100% { opacity: .5; transform: scaleY(1); }
+  50%      { opacity: 1; transform: scaleY(.6); }
+}
+
+/* ──────────────────────────────────────────
+   SECTIONS & LAYOUT
+   ────────────────────────────────────────── */
+.page-top { padding-top: var(--nav-h); }
+
+section { padding: 80px 48px; }
+section:nth-child(even) { background: var(--white); }
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: .72rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-title em { color: var(--red); font-style: italic; }
+.section-desc {
+  color: var(--muted);
+  max-width: 600px;
+  margin-bottom: 48px;
+  font-size: .95rem;
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* Divider */
+.divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(to right, var(--red), var(--gold));
+  margin: 20px 0 32px;
+}
+
+/* ──────────────────────────────────────────
+   PAGE HERO (inner pages)
+   ────────────────────────────────────────── */
+.page-hero {
+  height: 420px;
+  display: flex; align-items: flex-end;
+  padding: 48px;
+  position: relative; overflow: hidden;
+  margin-top: var(--nav-h);
+}
+.page-hero-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(.4);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+}
+.page-hero p { color: rgba(255,255,255,.7); font-size: 1rem; margin-top: 8px; }
+
+/* ──────────────────────────────────────────
+   CARDS
+   ────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 8px;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform .3s, box-shadow .3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(13,27,42,.12);
+}
+.card-img {
+  width: 100%; height: 220px;
+  object-fit: cover; display: block;
+  transition: transform .5s;
+}
+.card:hover .card-img { transform: scale(1.05); }
+.card-img-wrap { overflow: hidden; }
+.card-body { padding: 24px; }
+.card-tag {
+  font-family: 'Cinzel', serif;
+  font-size: .65rem;
+  color: var(--red);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.card p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+.card-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-detail {
+  font-size: .75rem;
+  color: var(--muted);
+  letter-spacing: .05em;
+}
+.card-link {
+  font-size: .75rem;
+  color: var(--red);
+  text-decoration: none;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color .2s;
+}
+.card-link:hover { color: var(--navy); }
+
+/* ──────────────────────────────────────────
+   WHY VISIT — Feature Strips
+   ────────────────────────────────────────── */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.feature {
+  padding: 36px 28px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+  transition: background .25s;
+}
+.feature:last-child { border-right: none; }
+.feature:hover { background: var(--white); }
+.feature-icon { font-size: 2rem; margin-bottom: 14px; }
+.feature h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 600;
+  margin-bottom: 8px;
+}
+.feature p { font-size: .82rem; color: var(--muted); }
+
+/* ──────────────────────────────────────────
+   BANNER STRIP
+   ────────────────────────────────────────── */
+.banner {
+  padding: 80px 48px;
+  background: var(--navy);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.banner::before {
+  content: '日本';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.02);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.banner h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+.banner p { color: rgba(255,255,255,.6); max-width: 500px; margin: 0 auto 32px; }
+
+/* ──────────────────────────────────────────
+   GALLERY PAGE
+   ────────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 250px;
+  gap: 12px;
+}
+.gallery-item {
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item.wide  { grid-column: span 2; }
+.gallery-item.tall  { grid-row:    span 2; }
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .5s;
+}
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-item .overlay {
+  position: absolute; inset: 0;
+  background: rgba(13,27,42,.55);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+}
+.gallery-item:hover .overlay { opacity: 1; }
+.overlay span {
+  color: var(--white);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+.overlay small {
+  color: var(--gold);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ──────────────────────────────────────────
+   CONTACT PAGE
+   ────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  align-items: start;
+}
+.contact-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300;
+  margin-bottom: 16px;
+}
+.contact-info p { color: var(--muted); font-size: .9rem; margin-bottom: 32px; }
+.info-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.info-icon {
+  width: 40px; height: 40px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.info-item h4 {
+  font-size: .8rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+.info-item p { color: var(--muted); font-size: .87rem; margin: 0; }
+
+/* Form */
+.contact-form {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.form-group { margin-bottom: 22px; }
+.form-group label {
+  display: block;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: .9rem;
+  color: var(--navy);
+  background: var(--cream);
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit { width: 100%; padding: 15px; font-size: .85rem; }
+
+/* ──────────────────────────────────────────
+   CULTURE PAGE
+   ────────────────────────────────────────── */
+.culture-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+.culture-block.reverse { direction: rtl; }
+.culture-block.reverse > * { direction: ltr; }
+.culture-img {
+  border-radius: 4px; overflow: hidden;
+  position: relative;
+}
+.culture-img img {
+  width: 100%; height: 360px;
+  object-fit: cover; display: block;
+}
+.culture-img::after {
+  content: '';
+  position: absolute; bottom: -16px; right: -16px;
+  width: 80%; height: 80%;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  z-index: -1;
+}
+.culture-text .section-label { margin-bottom: 10px; }
+.culture-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.culture-text p { color: var(--muted); font-size: .92rem; margin-bottom: 16px; }
+.culture-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.tag {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ──────────────────────────────────────────
+   FOOTER
+   ────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.55);
+  padding: 60px 48px 30px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+.footer-brand .nav-logo { font-size: 1.1rem; margin-bottom: 14px; display: inline-flex; }
+.footer-brand p { font-size: .83rem; line-height: 1.7; }
+footer h5 {
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+footer ul { list-style: none; }
+footer ul li { margin-bottom: 8px; }
+footer ul a {
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+  font-size: .83rem;
+  transition: color .2s;
+}
+footer ul a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .75rem;
+}
+.footer-bottom span { color: var(--gold); }
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; flex-direction: column; gap: 0;
+    position: absolute; top: var(--nav-h); left: 0; right: 0;
+    background: var(--navy); padding: 12px 0; border-top: 1px solid rgba(255,255,255,.1); }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 24px; border-radius: 0; }
+  .hamburger { display: flex; }
+
+  section { padding: 60px 24px; }
+  .page-hero { padding: 32px 24px; height: 300px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr 1fr; }
+  .feature { border-right: none; border-bottom: 1px solid var(--border); }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item.wide { grid-column: span 1; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .culture-block, .culture-block.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .culture-img::after { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  footer { padding: 48px 24px 24px; }
+  .banner { padding: 60px 24px; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.tall { grid-row: span 1; }
+  .features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.8rem; }
+}
+
+/* ── Utility ── */
+.mt-0 { margin-top: 0 !important; }
+.text-center { text-align: center; }
+.text-center .divider { margin: 20px auto 32px; }
+.text-center .section-desc { margin-left: auto; margin-right: auto; }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">探 <span>EXPLORE</span>&nbsp;JAPAN</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="culture.html" class="active">Culture</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <div class="page-hero">
+    <div class="page-hero-img" style="background-image: url('images/hero-dest.jpg')"></div>
+    <div class="page-hero-content">
+      <span class="section-label">Traditions & Flavours</span>
+      <h1>Japanese<br>Culture</h1>
+      <p>Food, fashion, philosophy, and festivals — Japan's culture is profound and joyful.</p>
+    </div>
+  </div>
+
+  <!-- ── Intro ── -->
+  <section>
+    <div class="container text-center">
+      <span class="section-label">The Spirit of Japan</span>
+      <h2 class="section-title">Rooted in<br><em>Harmony & Craft</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Japanese culture is defined by the concept of <em>monozukuri</em> — the art of making things with care. Whether in a bowl of ramen or a centuries-old tea ceremony, precision and intention are present in every detail.</p>
+    </div>
+  </section>
+
+  <!-- ── Food ── -->
+  <section id="food">
+    <div class="container">
+      <div class="culture-block">
+        <div class="culture-img">
+          <img src="images/sushi.jpg" alt="Fresh sushi platter on dark wooden board">
+        </div>
+        <div class="culture-text">
+          <span class="section-label">Japanese Cuisine</span>
+          <h3>Food as<br>High Art</h3>
+          <div class="divider"></div>
+          <p>Japanese cuisine — <em>washoku</em> — was inscribed on UNESCO's Intangible Cultural Heritage list in 2013. It is built on four guiding principles: fresh seasonal ingredients, balance of taste and nutrition, beautiful presentation, and respect for nature.</p>
+          <p>Sushi is just the beginning. Ramen broth is simmered for 18 hours. Tempura batter is made fresh each minute. Wagyu beef is raised with near-obsessive attention. Even a convenience store onigiri is folded with care.</p>
+          <p>Japan's regional food culture is equally remarkable — Osaka has takoyaki and okonomiyaki, Hokkaido has dairy-rich ramen and fresh crab, Kyoto has delicate kaiseki cuisine built around tofu and seasonal vegetables.</p>
+          <div class="culture-tags">
+            <span class="tag">🍣 Sushi & Sashimi</span>
+            <span class="tag">🍜 Ramen</span>
+            <span class="tag">🍱 Bento</span>
+            <span class="tag">🍡 Wagashi Sweets</span>
+            <span class="tag">🍵 Matcha</span>
+            <span class="tag">🐡 Tempura</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Food Sub-Cards ── -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/ramen.jpg" alt="Bowl of steaming ramen" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-tag">Soul Food</div>
+            <h3>Ramen</h3>
+            <p>Each region of Japan has its own ramen identity. Sapporo's miso broth, Fukuoka's creamy tonkotsu, Tokyo's soy shoyu — ramen is a way of life, not just a meal.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/tea-ceremony.jpg" alt="Japanese matcha tea ceremony" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-tag">Ancient Ritual</div>
+            <h3>Tea Ceremony</h3>
+            <p>The Japanese tea ceremony (chado) is a choreographed ritual of preparing and presenting matcha. Every gesture carries meaning — silence, simplicity, and grace.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/street-food.jpg" alt="Japanese street food stall" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-tag">Street Bites</div>
+            <h3>Yatai Street Food</h3>
+            <p>Night markets and festival stalls serve takoyaki (octopus balls), yakitori (grilled skewers), and creamy taiyaki fish-shaped cakes filled with sweet red bean paste.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Kimono ── -->
+  <section id="kimono">
+    <div class="container">
+      <div class="culture-block reverse">
+        <div class="culture-img">
+          <img src="images/kimono-kyoto.jpg" alt="Woman in traditional kimono in Kyoto">
+        </div>
+        <div class="culture-text">
+          <span class="section-label">Traditional Arts</span>
+          <h3>Kimono &<br>Traditional Dress</h3>
+          <div class="divider"></div>
+          <p>The kimono — meaning "thing to wear" — is Japan's most enduring garment. Worn for over a thousand years, each kimono is a textile artwork: hand-dyed silk, seasonal motifs (cranes, plum blossoms, waves), and colours that change by ceremony, season, and social occasion.</p>
+          <p>In Kyoto, you can rent a kimono and stroll the stone-paved lanes of Higashiyama district, blending seamlessly into the scenery. Many visitors describe it as one of Japan's most memorable experiences.</p>
+          <p>Beyond kimono, Japan's arts include ikebana flower arranging, origami, calligraphy, lacquerware (urushi), and the highly theatrical Noh, Kabuki, and Bunraku puppet theatre traditions.</p>
+          <div class="culture-tags">
+            <span class="tag">👘 Kimono Rental</span>
+            <span class="tag">🖌️ Calligraphy</span>
+            <span class="tag">🌸 Ikebana</span>
+            <span class="tag">🎭 Kabuki Theatre</span>
+            <span class="tag">🪆 Origami</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Festivals ── -->
+  <section id="festivals">
+    <div class="container">
+      <div class="culture-block">
+        <div class="culture-img">
+          <img src="images/lanterns.jpg" alt="Lanterns at Japanese festival at night">
+        </div>
+        <div class="culture-text">
+          <span class="section-label">Japanese Festivals</span>
+          <h3>Matsuri —<br>The Festival Spirit</h3>
+          <div class="divider"></div>
+          <p><em>Matsuri</em> (festivals) are central to Japanese community life. Originally religious ceremonies to honour Shinto gods, they have evolved into spectacular public celebrations of music, dance, food, and light.</p>
+          <p>The Cherry Blossom (Hanami) season in late March turns parks into vast open-air parties. Families spread picnic mats under blooming trees and celebrate the fleeting beauty of spring — a philosophy called <em>mono no aware</em>, the bittersweet awareness of impermanence.</p>
+          <p>O-Bon in August is the festival of ancestral spirits. Cities light thousands of paper lanterns and send them floating down rivers. Traditional Bon Odori dances fill town squares with joy and memory.</p>
+          <div class="culture-tags">
+            <span class="tag">🌸 Hanami (Sakura)</span>
+            <span class="tag">🏮 O-Bon Festival</span>
+            <span class="tag">🎆 Hanabi (Fireworks)</span>
+            <span class="tag">🥁 Taiko Drums</span>
+            <span class="tag">🎑 Tsukimi Moon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Festival Calendar ── -->
+  <section style="padding-top:0; padding-bottom:80px;">
+    <div class="container">
+      <span class="section-label">When to Visit</span>
+      <h2 class="section-title">Festival<br><em>Calendar</em></h2>
+      <div class="divider"></div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-tag">Spring · March–May</div>
+            <h3>🌸 Hanami</h3>
+            <p>Cherry blossom viewing season. Parks across Japan bloom in pink and white. Tokyo, Kyoto, and Yoshino are prime hanami destinations for picnics under the trees.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-tag">Summer · July–August</div>
+            <h3>🎆 Natsu Matsuri</h3>
+            <p>Summer festivals feature colossal fireworks shows (hanabi), traditional Bon Odori dancing, and lively night markets. Kyoto's Gion Matsuri runs the entire month of July.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-tag">Autumn · October–November</div>
+            <h3>🍁 Koyo</h3>
+            <p>Autumn leaf viewing rivals cherry blossoms in beauty. Nikko, Kyoto's Tofuku-ji, and Osaka's Minoo Park turn gold, orange, and crimson in October and November.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ── -->
+  <div class="banner">
+    <h2>Experience Japanese Culture<br>For <em style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;">Yourself</em></h2>
+    <p>Browse our photo gallery or get in touch to start planning your cultural journey.</p>
+    <a href="gallery.html" class="btn">View Gallery</a>
+    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">探 <span>EXPLORE</span>&nbsp;JAPAN</a>
+        <p>Your guide to Japan's most captivating destinations, culture, and experiences.</p>
+      </div>
+      <div>
+        <h5>Pages</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+          <li><a href="culture.html">Culture</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="destinations.html#tokyo">Tokyo</a></li>
+          <li><a href="destinations.html#kyoto">Kyoto</a></li>
+          <li><a href="destinations.html#fuji">Mount Fuji</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Culture</h5>
+        <ul>
+          <li><a href="#food">Japanese Food</a></li>
+          <li><a href="#kimono">Kimono & Arts</a></li>
+          <li><a href="#festivals">Festivals</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Explore Japan. Educational Project.</span>
+      <span>Designed with <span style="color:var(--red)">♥</span> for Japan</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
